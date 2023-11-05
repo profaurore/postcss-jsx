@@ -31,6 +31,7 @@
 								"selector": {
 									"prefix": "",
 									"suffix": "",
+									"type": "Identifier",
 									"raw": "box",
 									"value": "box"
 								},
@@ -47,12 +48,14 @@
 										"prop": {
 											"prefix": "",
 											"suffix": "",
+											"type": "Identifier",
 											"raw": "padding",
 											"value": "padding"
 										},
 										"value": {
 											"prefix": "",
 											"suffix": "",
+											"type": "NumericLiteral",
 											"raw": "10",
 											"value": "10"
 										},
@@ -68,11 +71,13 @@
 										},
 										"start": {
 											"line": 15,
-											"column": 8
+											"column": 8,
+											"index": 289
 										},
 										"end": {
 											"line": 15,
-											"column": 19
+											"column": 19,
+											"index": 300
 										}
 									}
 								}
@@ -83,11 +88,13 @@
 								},
 								"start": {
 									"line": 15,
-									"column": 1
+									"column": 1,
+									"index": 282
 								},
 								"end": {
 									"line": 15,
-									"column": 21
+									"column": 21,
+									"index": 302
 								}
 							}
 						},
@@ -96,6 +103,7 @@
 								"selector": {
 									"prefix": "",
 									"suffix": "",
+									"type": "Identifier",
 									"raw": "text",
 									"value": "text"
 								},
@@ -112,12 +120,14 @@
 										"prop": {
 											"prefix": "",
 											"suffix": "",
+											"type": "Identifier",
 											"raw": "fontWeight",
 											"value": "font-weight"
 										},
 										"value": {
 											"prefix": "\"",
 											"suffix": "\"",
+											"type": "StringLiteral",
 											"raw": "bold",
 											"value": "bold"
 										},
@@ -133,11 +143,13 @@
 										},
 										"start": {
 											"line": 16,
-											"column": 9
+											"column": 9,
+											"index": 313
 										},
 										"end": {
 											"line": 16,
-											"column": 27
+											"column": 27,
+											"index": 331
 										}
 									}
 								}
@@ -148,11 +160,13 @@
 								},
 								"start": {
 									"line": 16,
-									"column": 1
+									"column": 1,
+									"index": 305
 								},
 								"end": {
 									"line": 16,
-									"column": 29
+									"column": 29,
+									"index": 333
 								}
 							}
 						}
@@ -163,11 +177,13 @@
 						},
 						"start": {
 							"line": 14,
-							"column": 33
+							"column": 33,
+							"index": 279
 						},
 						"end": {
 							"line": 17,
-							"column": 1
+							"column": 1,
+							"index": 336
 						}
 					}
 				}

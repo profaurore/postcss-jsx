@@ -18,7 +18,7 @@ const replaceProp = (fn) => (value) => (
 const camelCaseProp = replaceProp(camelCase);
 const unCamelCaseProp = replaceProp(unCamelCase);
 
-function defineRaws (node, prop, prefix, suffix, props) {
+function defineRaws (node, prop, type, prefix, suffix, props) {
 	if (!props) {
 		props = {};
 	}
@@ -51,6 +51,7 @@ function defineRaws (node, prop, prefix, suffix, props) {
 	node.raws[prop] = Object.defineProperties({
 		prefix,
 		suffix,
+		type,
 	}, props);
 }
 
@@ -164,6 +165,7 @@ class objectParser {
 					suffix: "",
 					raw: isCssFloat && node.name,
 					value: isCssFloat ? "float" : node.name,
+					type: node.type
 				};
 			}
 			case "StringLiteral": {
@@ -185,6 +187,7 @@ class objectParser {
 			prefix: valueWrap[0],
 			suffix: valueWrap[1],
 			value: cookedValue || rawValue,
+			type: node.type,
 		};
 	}
 
@@ -217,12 +220,12 @@ class objectParser {
 					},
 					nodes: [],
 				});
-				defineRaws(atRule, "name", key.prefix + "@", params ? "" : key.suffix, {
+				defineRaws(atRule, "name", key.type, key.prefix + "@", params ? "" : key.suffix, {
 					raw: "camel",
 				});
 				if (params) {
 					atRule.params = unCamelCaseProp(params);
-					defineRaws(atRule, "params", "", key.suffix, {
+					defineRaws(atRule, "params", key.type, "", key.suffix, {
 						raw: {
 							enumerable: true,
 							get: () => (
@@ -240,7 +243,7 @@ class objectParser {
 				rule = postcss.rule({
 					selector: key.value,
 				});
-				defineRaws(rule, "selector", key.prefix, key.suffix);
+				defineRaws(rule, "selector", key.type, key.prefix, key.suffix);
 			}
 			raw(rule);
 			this.ObjectExpression(node.value, rule);
@@ -254,11 +257,11 @@ class objectParser {
 				name: unCamelCase(key.value),
 				params: value.value,
 			});
-			defineRaws(atRule, "name", key.prefix, key.suffix, {
+			defineRaws(atRule, "name", key.type, key.prefix, key.suffix, {
 				raw: "camel",
 			});
 
-			defineRaws(atRule, "params", value.prefix, value.suffix);
+			defineRaws(atRule, "params", value.type, value.prefix, value.suffix);
 			raw(atRule);
 			return atRule;
 		} else {
@@ -277,12 +280,12 @@ class objectParser {
 					value: value.value,
 				});
 
-				defineRaws(decl, "prop", key.prefix, key.suffix, {
+				defineRaws(decl, "prop", key.type, key.prefix, key.suffix, {
 					raw: "camel",
 				});
 			}
 
-			defineRaws(decl, "value", value.prefix, value.suffix);
+			defineRaws(decl, "value", value.type, value.prefix, value.suffix);
 			raw(decl);
 			return decl;
 		}
